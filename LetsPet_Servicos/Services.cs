@@ -10,28 +10,23 @@ namespace LetsPet_Services
     {
         public double Price { get; set; }
         public int servicesTime { get; set; } //ver se DateTime é viável para ajudar o agendamento
+        public static Dictionary<string, int> bathMenu = new Dictionary<string, int> { { "Normal large dog bath", 1 }, { "Special large dog bath", 2 }, { "Normal small dog bath", 3 }, { "Special small dog bath", 4 }, { "Normal large cat bath", 5 }, { "Special large cat bath", 6 }, { "Normal small cat bath", 7 }, { "Special small cat bath", 8 } };
+        public static Dictionary<string, int> groomingMenu = new Dictionary<string, int> { { "Normal large dog grooming", 1 }, { "Hygienic large dog grooming", 2 }, { "Normal small dog grooming", 3 }, { "Hygienic small dog grooming", 4 }, { "Normal large cat grooming", 5 }, { "Hygienic large cat grooming", 6 }, { "Normal small cat grooming", 7 }, { "Hygienic small cat grooming", 8 } };
+        //public static Dictionary<string, int> GeneralMenu = new Dictionary<string, int> { { "Cadastro de Serviços e Preços dos Serviços", 1 }, { "Buscar serviço", 2 }, { "Relatório de serviços prestados", 3 }, { "Relatório de produtos por serviço prestado", 4 } };
 
         public static void ServicesMenu()
         {
             //int option;
-            List<(string, int)> BathList = BathMenu();
-            List<(string, int)> GroomingList = GroomingMenu();
-            bool want;
-            //do
-            //{
-            //    Console.WriteLine("O que você deseja?");
-            //    Console.WriteLine("1 - Banho\n2 - Tosa\n3 - Banho e Tosa");
-            //} while (!int.TryParse(Console.ReadLine(), out option) || (option < 1 || option > 3));
+             bool want;
             Console.WriteLine("Nossos serviços são banho e tosa.");
             do
             {
                 Console.WriteLine("O pet realizará banho?");
+
             } while (!bool.TryParse(Console.ReadLine(), out want));
 
             if (want)
-            {
                 PrintBath(); //limitar de acordo com porte, especie, alergia
-            }
 
             do
             {
@@ -39,69 +34,11 @@ namespace LetsPet_Services
             } while (!bool.TryParse(Console.ReadLine(), out want));
 
             if (want)
-            {
                 PrintGrooming(); //limitar de acordo com porte, especie, alergia
-            }
-            //do
-            //{
-            //    switch (option)
-            //    {
-            //        case 1:
-            //            {
-            //                Console.WriteLine("Banho:");
-            //                PrintBath();
-            //                 break;
-            //            }
-            //        case 2:
-            //            {
-            //                Console.WriteLine("Tosa:");
-            //                PrintGrooming();
-            //                break;
-            //            }
-            //            //case 3:
-            //            //    {
-            //            //        Console.WriteLine("Banho:");
-            //            //        PrintBath();
-            //            //        Console.WriteLine("Tosa:");
-            //            //        PrintGrooming();
-            //            //        break;
-            //            //    }
-            //    }
-            //    Console.WriteLine("Deseja realizar outro serviço?");
-            //} while (!bool.TryParse(Console.ReadLine(), out vai));
-
-            static List<(string bathMenu, int key)> BathMenu()
-            {
-                var bathList = new List<(string bathMenu, int key)>();
-                bathList.Add(("Normal large dog bath", 1));
-                bathList.Add(("Special large dog bath", 2));
-                bathList.Add(("Normal small dog bath", 3));
-                bathList.Add(("Special small dog bath", 4));
-                bathList.Add(("Normal large cat bath", 5));
-                bathList.Add(("Special large cat bath", 6));
-                bathList.Add(("Normal small cat bath", 7));
-                bathList.Add(("Special small cat bath", 8));
-                return bathList;
-            }
-
-            static List<(string groomingMenu, int key)> GroomingMenu()
-            {
-                var groomingList = new List<(string groomingMenu, int key)>();
-                groomingList.Add(("Normal large dog grooming", 1));
-                groomingList.Add(("Hygienic large dog grooming", 2));
-                groomingList.Add(("Normal small dog grooming", 3));
-                groomingList.Add(("Hygienic small dog grooming", 4));
-                groomingList.Add(("Normal large cat grooming", 5));
-                groomingList.Add(("Hygienic large cat grooming", 6));
-                groomingList.Add(("Normal small cat grooming", 7));
-                groomingList.Add(("Hygienic small cat grooming", 8));
-
-                return groomingList;
-            }
 
             void PrintBath()
             {
-                foreach (var item in BathList)
+                foreach (var item in bathMenu)
                 {
                     Console.WriteLine(item);
                 }
@@ -109,10 +46,35 @@ namespace LetsPet_Services
 
             void PrintGrooming()
             {
-                foreach (var item in GroomingList)
+                foreach (var item in groomingMenu)
                 {
                     Console.WriteLine(item);
                 }
+            }
+        }
+        public static void DefaultMenu()
+        {
+            //foreach (var key in GeneralMenu)
+            //{
+            //    Console.WriteLine($"{key.Value} - {key.Key}");
+            //}
+            Console.WriteLine("1 - Cadastro de Serviços e Preços dos Serviços\n2 - Buscar serviço\n3 - Relatório de serviços prestados\n4 - Relatório de produtos por serviço prestado");
+            int answer = int.Parse(Console.ReadLine());
+            switch (answer)
+            {
+                case 1:
+                    Console.WriteLine("1 - Cadastro de Serviços\n2 - Preços dos Serviços");
+                    //if (int.Parse(Console.ReadLine()) == 1)
+                        //TipoServico.Bath.BathOptions();
+                    break;
+                case 2:
+                    Services.ServicesMenu();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+
             }
         }
     }
