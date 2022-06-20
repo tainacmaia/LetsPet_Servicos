@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LetsPet_Services.Busca;
 
 namespace LetsPet_Services
 {
@@ -64,17 +65,17 @@ namespace LetsPet_Services
             {
                 case 1:
                     Console.WriteLine("1 - Cadastro de Serviços\n2 - Preços dos Serviços");
+                    Services.ServicesMenu();
                     //if (int.Parse(Console.ReadLine()) == 1)
-                        //TipoServico.Bath.BathOptions();
+                    //TipoServico.Bath.BathOptions();
                     break;
                 case 2:
-                    Services.ServicesMenu();
+                    Research.Options();
                     break;
                 case 3:
                     break;
                 case 4:
                     break;
-
             }
         }
     }
