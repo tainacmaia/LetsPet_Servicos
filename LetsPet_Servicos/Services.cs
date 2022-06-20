@@ -10,8 +10,8 @@ namespace LetsPet_Services
     {
         public double Price { get; set; }
         public int servicesTime { get; set; } //ver se DateTime é viável para ajudar o agendamento
-        public static Dictionary<string, int> bathMenu = new Dictionary<string, int> { { "Normal large dog bath", 1 }, { "Special large dog bath", 2 }, { "Normal small dog bath", 3 }, { "Special small dog bath", 4 }, { "Normal large cat bath", 5 }, { "Special large cat bath", 6 }, { "Normal small cat bath", 7 }, { "Special small cat bath", 8 } };
-        public static Dictionary<string, int> groomingMenu = new Dictionary<string, int> { { "Normal large dog grooming", 1 }, { "Hygienic large dog grooming", 2 }, { "Normal small dog grooming", 3 }, { "Hygienic small dog grooming", 4 }, { "Normal large cat grooming", 5 }, { "Hygienic large cat grooming", 6 }, { "Normal small cat grooming", 7 }, { "Hygienic small cat grooming", 8 } };
+        public static Dictionary<string, int> bathMenu = new Dictionary<string, int> { { "Banho Normal: Cachorro Grande", 1 }, { "Banho Especial: Cachorro Grande", 2 }, { "Banho Normal: Cachorro Pequeno", 3 }, { "Banho Especial: Cachorro Pequeno", 4 }, { "Banho Normal: Gato Grande", 5 }, { "Banho Especial: Gato Grande", 6 }, { "Banho Normal: Gato Pequeno", 7 }, { "Banho Especial: Gato Pequeno", 8 } };
+        public static Dictionary<string, int> groomingMenu = new Dictionary<string, int> { { "Tosa Normal: Cachorro Grande", 1 }, { "Tosa Higiênica: Cachorro Grande", 2 }, { "Tosa Normal: Cachorro Pequeno", 3 }, { "Tosa Higiênica: Cachorro Pequeno", 4 }, { "Tosa Normal: Gato Grande", 5 }, { "Tosa Higiênica: Gato Grande", 6 }, { "Tosa Normal: Gato Pequeno", 7 }, { "Tosa Higiênica: Gato Pequeno", 8 } };
         //public static Dictionary<string, int> GeneralMenu = new Dictionary<string, int> { { "Cadastro de Serviços e Preços dos Serviços", 1 }, { "Buscar serviço", 2 }, { "Relatório de serviços prestados", 3 }, { "Relatório de produtos por serviço prestado", 4 } };
 
         public static void ServicesMenu()

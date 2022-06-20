@@ -10,25 +10,24 @@ namespace LetsPet_Services.Busca
     {
         public static void BathResearch(string variavelQueIremosLer)
         {
-            string[] palavras = variavelQueIremosLer.Split(' ');
-
-            if (palavras.Contains("large dog bath"))
+            foreach (var item in Services.bathMenu)
             {
-                Console.WriteLine("Existe!");
+                if (item.Key.Contains(variavelQueIremosLer))
+                {
+                    Console.WriteLine(item.Key);
+                }
             }
-            else
-            {
-                Console.WriteLine("Não existe!");
-            }
+        }
 
-            Console.ReadKey();
-            //foreach (var item in Services.bathMenu)
-            //{
-            //    if (Services.bathMenu.ContainsKey(palavras))
-            //    {
-            //        Console.WriteLine(item.Key);
-            //    }
-            //}
+        public static void GroomingResearch(string variavelQueIremosLer)
+        {
+            foreach (var item in Services.groomingMenu)
+            {
+                if (item.Key.Contains(variavelQueIremosLer))
+                {
+                    Console.WriteLine(item.Key);
+                }
+            }
         }
     }
 }

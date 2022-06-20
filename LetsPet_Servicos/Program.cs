@@ -50,9 +50,9 @@ namespace LetsPet_Services
 
             //animaldaThayssa.ImprimirAnimal();
             //Grooming.GroomingOptions(animaldaThayssa);
-
-            //string arroz = "large dog bath";
-            //Research.BathResearch(arroz);
+            Console.WriteLine("Digite algo para busca:")
+            string arroz = Console.ReadLine();
+            Research.BathResearch(arroz);
 
             //Services.ServicesMenu();
         }
