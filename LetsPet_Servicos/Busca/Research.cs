@@ -8,27 +8,27 @@ namespace LetsPet_Services.Busca
 {
     internal class Research
     {
-        public static void BathResearch(string variavelQueIremosLer)
+        public static void ServicesResearch(string search)
         {
-            foreach (var item in Services.bathMenu)
+            foreach (var item in Services.Package)
             {
-                if (item.Key.Contains(variavelQueIremosLer))
+                if (item.Key.Contains(search))
                 {
                     Console.WriteLine(item.Key);
                 }
             }
         }
 
-        public static void GroomingResearch(string variavelQueIremosLer)
-        {
-            foreach (var item in Services.groomingMenu)
-            {
-                if (item.Key.Contains(variavelQueIremosLer))
-                {
-                    Console.WriteLine(item.Key);
-                }
-            }
-        }
+        //public static void GroomingResearch(string variavelQueIremosLer)
+        //{
+        //    foreach (var item in Services.groomingMenu)
+        //    {
+        //        if (item.Key.Contains(variavelQueIremosLer))
+        //        {
+        //            Console.WriteLine(item.Key);
+        //        }
+        //    }
+        //}
         public static void Options()
         {
             Console.WriteLine("Qual o tipo de pesquisa que deseja realizar?");
@@ -40,19 +40,19 @@ namespace LetsPet_Services.Busca
                 input = int.Parse(Console.ReadLine());
                 if (input == 1)
                 {
-                    Research.BathResearch("Banho");
+                    ServicesResearch("Banho");
                 }
                 else if (input == 2)//*
                 {
-                    Research.GroomingResearch("Tosa");
+                    ServicesResearch("Tosa");
                 }
             }
             else if (input == 2)
             {
                 Console.WriteLine("Digite um porte ou espécie");
                 string arroz = Console.ReadLine();
-                Research.BathResearch(arroz);
-                Research.GroomingResearch(arroz);
+                ServicesResearch(arroz);
+                ServicesResearch(arroz);
             }
         }
     }

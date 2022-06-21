@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LetsPet_Services.Cadastro
 {
-    public class AddService
+    public class Registration
     {
         public static int order = 1;
         public static string service;

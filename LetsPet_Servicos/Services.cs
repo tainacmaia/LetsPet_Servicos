@@ -9,10 +9,11 @@ namespace LetsPet_Services
 {
     public class Services
     {
-        public double Price { get; set; }
         public int servicesTime { get; set; } //ver se DateTime é viável para ajudar o agendamento
         public static Dictionary<string, int> bathMenu = new Dictionary<string, int> { { "Banho Normal: Cachorro Grande", 1 }, { "Banho Especial: Cachorro Grande", 2 }, { "Banho Normal: Cachorro Pequeno", 3 }, { "Banho Especial: Cachorro Pequeno", 4 }, { "Banho Normal: Gato Grande", 5 }, { "Banho Especial: Gato Grande", 6 }, { "Banho Normal: Gato Pequeno", 7 }, { "Banho Especial: Gato Pequeno", 8 } };
         public static Dictionary<string, int> groomingMenu = new Dictionary<string, int> { { "Tosa Normal: Cachorro Grande", 1 }, { "Tosa Higiênica: Cachorro Grande", 2 }, { "Tosa Normal: Cachorro Pequeno", 3 }, { "Tosa Higiênica: Cachorro Pequeno", 4 }, { "Tosa Normal: Gato Grande", 5 }, { "Tosa Higiênica: Gato Grande", 6 }, { "Tosa Normal: Gato Pequeno", 7 }, { "Tosa Higiênica: Gato Pequeno", 8 } };
+        public static Dictionary<string, List<string>> Package = new Dictionary<string, List<string>> {};
+        public static Dictionary<string, int> Price = new Dictionary<string, int> { };
         //public static Dictionary<string, int> GeneralMenu = new Dictionary<string, int> { { "Cadastro de Serviços e Preços dos Serviços", 1 }, { "Buscar serviço", 2 }, { "Relatório de serviços prestados", 3 }, { "Relatório de produtos por serviço prestado", 4 } };
 
         public static void ServicesMenu()
@@ -65,7 +66,7 @@ namespace LetsPet_Services
             {
                 case 1:
                     Console.WriteLine("1 - Cadastro de Serviços\n2 - Preços dos Serviços");
-                    Services.ServicesMenu();
+                    ServicesMenu();
                     //if (int.Parse(Console.ReadLine()) == 1)
                     //TipoServico.Bath.BathOptions();
                     break;
