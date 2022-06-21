@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Cadastro\" />
+    <Folder Include="Animal\" />
     <Folder Include="RelatorioBusca\" />
     <Folder Include="RelatorioServico\" />
   </ItemGroup>

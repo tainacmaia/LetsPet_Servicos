@@ -9,7 +9,8 @@ namespace LetsPet_Services
         static void Main()
         {
             Console.WriteLine("Bem-vindo à LetsPet");
-            Services.DefaultMenu();
+            Cadastro.AddService.Options();
+            //Services.DefaultMenu();
 
             //primeiro menu
             //• Cadastro de Serviços e Preços dos Serviços
