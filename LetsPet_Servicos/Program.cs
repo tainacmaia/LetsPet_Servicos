@@ -8,7 +8,7 @@ namespace LetsPet_Services
         static void Main()
         {
             Console.WriteLine("Bem-vindo à LetsPet");
-            Services.DefaultMenu();
+            ServicesMain.DefaultMenu();
         }
     }
 }

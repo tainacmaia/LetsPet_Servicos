@@ -10,30 +10,21 @@ namespace LetsPet_Services.Busca
     {
         public static void ServicesResearch(string search)
         {
-            foreach (var item in Services.Package)
+            var internalSearch = Cadastro.Registration.ServicesList.Where(s => s.Type == search);
+
+            foreach (var service in internalSearch)
             {
-                if (item.Key.Contains(search))
-                {
-                    Console.WriteLine(item.Key);
-                }
+                Console.WriteLine(service.Name);
             }
         }
 
-        //public static void GroomingResearch(string variavelQueIremosLer)
-        //{
-        //    foreach (var item in Services.groomingMenu)
-        //    {
-        //        if (item.Key.Contains(variavelQueIremosLer))
-        //        {
-        //            Console.WriteLine(item.Key);
-        //        }
-        //    }
-        //}
         public static void Options()
         {
+            string search;
+            int input;
             Console.WriteLine("Qual o tipo de pesquisa que deseja realizar?");
-            Console.WriteLine("1 - Tipo de Serviços\n2 - Porte ou Espécie");
-            int input = int.Parse(Console.ReadLine());
+            Console.WriteLine("1 - Tipo de Serviços\n2 - Por porte ou espécie");
+            input = int.Parse(Console.ReadLine());
             if (input == 1)
             {
                 Console.WriteLine("Opções de serviço são:\n1 - Banho\n2 - Tosa");
@@ -50,9 +41,8 @@ namespace LetsPet_Services.Busca
             else if (input == 2)
             {
                 Console.WriteLine("Digite um porte ou espécie");
-                string arroz = Console.ReadLine();
-                ServicesResearch(arroz);
-                ServicesResearch(arroz);
+                search = Console.ReadLine();
+                ServicesResearch(search);
             }
         }
     }

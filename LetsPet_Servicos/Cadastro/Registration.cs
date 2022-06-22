@@ -6,11 +6,22 @@ using System.Threading.Tasks;
 
 namespace LetsPet_Services.Cadastro
 {
-    public class Registration : Services
+    public class Registration
     {
+        public static string Type;
+        public static string Species;
+        public static string Size;
+        public static string Name;
+        public static bool Special;
+        public static bool Lotion;
+        public static string GroomingType = "";
+        public static int ServiceTime = 1;
+        public static double Price;
+        public static int option;
         public static int order = 1;
+        public static List<Service> ServicesList = new();
 
-        public static void Select()
+        public static void AddService()
         {
             Console.WriteLine("O que você deseja cadastrar?");
             foreach (Type service in Enum.GetValues(typeof(Type)))
@@ -20,7 +31,7 @@ namespace LetsPet_Services.Cadastro
             }
             order = int.Parse(Console.ReadLine());
             Type = Enum.GetName(typeof(Type), order);
-            Specification.Add(Type);
+
             if (order == 2)
             {
                 order = 1;
@@ -33,65 +44,48 @@ namespace LetsPet_Services.Cadastro
                 order = int.Parse(Console.ReadLine());
                 GroomingType = Enum.GetName(typeof(GroomingType), order);
             }
+            else
+            {
+                GroomingType = null;
+            }
             order = 1;
 
             Console.WriteLine("Para qual espécie é este serviço?");
-            foreach (Especie especie in Enum.GetValues(typeof(Especie)))
+            foreach (Species especie in Enum.GetValues(typeof(Species)))
             {
                 Console.WriteLine($"{order} - {especie}");
                 order++;
             }
             order = int.Parse(Console.ReadLine());
-            Species = Enum.GetName(typeof(Especie), order);
-            Specification.Add(Species);
+            Species = Enum.GetName(typeof(Species), order);
+
             order = 1;
 
             Console.WriteLine("Para qual porte é este serviço?");
-            foreach (Porte especie in Enum.GetValues(typeof(Size)))
+            foreach (Size especie in Enum.GetValues(typeof(Size)))
             {
                 Console.WriteLine($"{order} - {especie}");
                 order++;
             }
             order = int.Parse(Console.ReadLine());
-            Size = Enum.GetName(typeof(Porte), order);
-            Specification.Add(Size);
+            Size = Enum.GetName(typeof(Size), order);
             order = 1;
 
             Console.WriteLine("É um serviço especial?");
-            Special = Console.ReadLine();
-            Specification.Add(Special);
+            Special = bool.Parse(Console.ReadLine());
 
             Console.WriteLine("Esse serviço utilizará loção?");
-            Lotion = Console.ReadLine();
-            Specification.Add(Lotion);
+            Lotion = bool.Parse(Console.ReadLine());
 
             Console.WriteLine("Qual o nome deste serviço?");
             Name = Console.ReadLine();
 
-            Specification.Add(GroomingType);
-
-            Package.Add(Name, Specification);
-            foreach (var item in Package)
-            {
-                Console.WriteLine("Serviço adicionado com sucesso!");
-                Console.WriteLine("Serviço: ");
-                Console.WriteLine(item.Key);
-                Console.WriteLine("Informações do serviço: ");
-                for (int i = 0; i < Specification.Count; i++)
-                {
-                    Console.WriteLine(Specification[i]);
-                };
-            }
-
             Console.WriteLine("Qual o valor deste serviço?");
             Price = double.Parse(Console.ReadLine());
-            Prices.Add(Name, Math.Round(Price, 2));
-            foreach (var item in Prices)
-            {
-                Console.WriteLine("Serviço e valor determinado: ");
-                Console.WriteLine($"{item.Key} - R${item.Value}");
-                
-            }
+
+            Service newService = new Service (Type, Species, Size, Name, Special, Lotion, GroomingType, ServiceTime, Price);
+            ServicesList.Add(newService);
+            Console.WriteLine("Cadastro Realizado!\n");
         }
     }
 }
