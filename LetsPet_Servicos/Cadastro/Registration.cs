@@ -18,74 +18,113 @@ namespace LetsPet_Services.Cadastro
         public static int ServiceTime = 1;
         public static double Price;
         public static int option;
-        public static int order = 1;
+        public static int order;
+        public static string validate;
         public static List<Service> ServicesList = new();
 
         public static void AddService()
         {
-            Console.WriteLine("O que você deseja cadastrar?");
-            foreach (Type service in Enum.GetValues(typeof(Type)))
+            do
             {
-                Console.WriteLine($"{order} - {service}");
-                order++;
-            }
-            order = int.Parse(Console.ReadLine());
-            Type = Enum.GetName(typeof(Type), order);
-
-            if (order == 2)
-            {
+                Console.WriteLine("O que você deseja cadastrar?");
                 order = 1;
-                Console.WriteLine("Qual o tipo de tosa a ser realizado?");
-                foreach (GroomingType service in Enum.GetValues(typeof(GroomingType)))
+                foreach (Type service in Enum.GetValues(typeof(Type)))
                 {
                     Console.WriteLine($"{order} - {service}");
                     order++;
                 }
-                order = int.Parse(Console.ReadLine());
+            } while (!int.TryParse(Console.ReadLine(), out order) || (order < 1 || order > 2));
+            Type = Enum.GetName(typeof(Type), order);
+
+            if (order == 2)
+            {
+                do
+                {
+                    order = 1;
+                    Console.WriteLine("Qual o tipo de tosa a ser realizado?");
+                    foreach (GroomingType service in Enum.GetValues(typeof(GroomingType)))
+                    {
+                        Console.WriteLine($"{order} - {service}");
+                        order++;
+                    }
+                } while (!int.TryParse(Console.ReadLine(), out order) || (order < 1 || order > 3));
                 GroomingType = Enum.GetName(typeof(GroomingType), order);
             }
             else
             {
                 GroomingType = null;
             }
-            order = 1;
 
-            Console.WriteLine("Para qual espécie é este serviço?");
-            foreach (Species especie in Enum.GetValues(typeof(Species)))
+            do
             {
-                Console.WriteLine($"{order} - {especie}");
-                order++;
-            }
-            order = int.Parse(Console.ReadLine());
+                order = 1;
+                Console.WriteLine("Para qual espécie é este serviço?");
+                foreach (Species especie in Enum.GetValues(typeof(Species)))
+                {
+                    Console.WriteLine($"{order} - {especie}");
+                    order++;
+                }
+            } while (!int.TryParse(Console.ReadLine(), out order) || (order < 1 || order > 2));
             Species = Enum.GetName(typeof(Species), order);
 
-            order = 1;
-
-            Console.WriteLine("Para qual porte é este serviço?");
-            foreach (Size especie in Enum.GetValues(typeof(Size)))
+            do
             {
-                Console.WriteLine($"{order} - {especie}");
-                order++;
-            }
-            order = int.Parse(Console.ReadLine());
+                order = 1;
+                Console.WriteLine("Para qual porte é este serviço?");
+                foreach (Size especie in Enum.GetValues(typeof(Size)))
+                {
+                    Console.WriteLine($"{order} - {especie}");
+                    order++;
+                }
+            } while (!int.TryParse(Console.ReadLine(), out order) || (order < 1 || order > 2));
             Size = Enum.GetName(typeof(Size), order);
             order = 1;
 
-            Console.WriteLine("É um serviço especial?");
-            Special = bool.Parse(Console.ReadLine());
+            do
+            {
+                Console.WriteLine("É um serviço especial?");
+                validate = Console.ReadLine().ToUpper();
+            } while (!Validations.Resposta(validate));
+            Special = Validations.SimNao(validate);
 
-            Console.WriteLine("Esse serviço utilizará loção?");
-            Lotion = bool.Parse(Console.ReadLine());
+            do
+            {
+                Console.WriteLine("Esse serviço utilizará loção?");
+                validate = Console.ReadLine().ToUpper();
+            } while (!Validations.Resposta(validate));
+            Lotion = Validations.SimNao(validate);
 
-            Console.WriteLine("Qual o nome deste serviço?");
-            Name = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("Qual o nome deste serviço?");
+                Name = Console.ReadLine();
+            } while (string.IsNullOrWhiteSpace(Name)); //não aceitar nomes já existentes
 
-            Console.WriteLine("Qual o valor deste serviço?");
-            Price = double.Parse(Console.ReadLine());
+            do
+            {
+                Console.WriteLine("Qual o valor deste serviço?");
+            } while (!double.TryParse(Console.ReadLine(), out Price));
 
-            Service newService = new Service (Type, Species, Size, Name, Special, Lotion, GroomingType, ServiceTime, Price);
+            Service newService = new Service(Type, Species, Size, Name, Special, Lotion, GroomingType, ServiceTime, Price);
             ServicesList.Add(newService);
             Console.WriteLine("Cadastro Realizado!\n");
+
+            foreach (var service in ServicesList)
+            {
+                if (service.Name == Name)
+                Console.WriteLine($"Nome do serviço: {service.Name}");
+                Console.Write("Informações do serviço: ");
+                Console.Write(service.Type);
+                if (GroomingType != "")
+                {
+                    Console.Write($" {service.GroomingType}");
+                }
+                Console.Write($"; Porte {service.Size}; ");
+                Console.Write($"Serviço especial: {service.Special}; ");
+                Console.Write($"Loção: {service.Lotion}; ");
+                Console.Write($"Tempo: {service.ServiceTime}h; ");
+                Console.WriteLine($"Preço: {service.Price}.");
+            }
         }
     }
 }
