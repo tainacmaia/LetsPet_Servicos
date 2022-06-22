@@ -82,14 +82,14 @@ namespace LetsPet_Services.Cadastro
 
             do
             {
-                Console.WriteLine("É um serviço especial?");
+                Console.WriteLine("É um serviço especial (S/N)?");
                 validate = Console.ReadLine().ToUpper();
             } while (!Validations.Resposta(validate));
             Special = Validations.SimNao(validate);
 
             do
             {
-                Console.WriteLine("Esse serviço utilizará loção?");
+                Console.WriteLine("Esse serviço utilizará loção (S/N)?");
                 validate = Console.ReadLine().ToUpper();
             } while (!Validations.Resposta(validate));
             Lotion = Validations.SimNao(validate);
@@ -107,6 +107,8 @@ namespace LetsPet_Services.Cadastro
 
             Service newService = new Service(Type, Species, Size, Name, Special, Lotion, GroomingType, ServiceTime, Price);
             ServicesList.Add(newService);
+
+            Console.Clear();
             Console.WriteLine("Cadastro Realizado!\n");
 
             foreach (var service in ServicesList)
